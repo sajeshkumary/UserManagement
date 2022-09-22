@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ServiceBookingLibrary.Models;
+using UserManagement.Filters;
 using UserManagement.Models;
 using UserManagement.Repo;
 
@@ -56,7 +57,8 @@ namespace UserManagement.Controllers
             return await userRepo.AddNewUser(u);
         }
 
-        [Authorize()]
+        [CustomAuthFilter]
+        [Authorize]
         [HttpPut("{id}")]
         public async Task<ActionResult<User>> UpdateUser(int id, [FromBody]User u)
         {
@@ -71,8 +73,9 @@ namespace UserManagement.Controllers
                 return NotFound(ex.Message);
             }
         }
-       
-        [Authorize()]
+
+        [CustomAuthFilter]
+        [Authorize]
         [HttpPut("ChangeRole/{id}")]
         public async Task<ActionResult<User>> UpdateRole(int id, User u)
         {
@@ -88,7 +91,8 @@ namespace UserManagement.Controllers
             }
         }
 
-        [Authorize()]
+        [CustomAuthFilter]
+        [Authorize]
         [HttpPut("ChangePassword/{id}")]
         public async Task<ActionResult<User>> ChangePassword(int id, User u)
         {
