@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ServiceBookingLibrary.Models;
-using UserManagement.Filters;
 using UserManagement.Models;
 using UserManagement.Repo;
 
